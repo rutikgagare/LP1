@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+void bestfit(int block[], int process[], int n, int m){
+    int index = INT_MIN;
+    int maxempty = INT_MIN;
+
+    int allocation[n] = {0};
+
+    for(int i = 0; i < m; i++){
+        index = INT_MIN;
+        maxempty = INT_MIN;
+
+        for (int j = 0; j < n; j++){
+            if (block[j] >= process[i]){
+                if((block[j] - process[i]) > maxempty){
+                    maxempty = block[j] - process[i];
+                    index = j;
+                }
+            }
+        }
+
+        if(index != INT_MAX){
+            block[index] = block[index] - process[i];
+            allocation[i] = index+1;
+        }
+    }
+
+    cout <<"process\t"<<"allocated block"<<endl;
+    for (int i = 0; i < n; i++){
+        if (allocation[i] > 0){
+            cout<<process[i]<<"\t   "<<allocation[i]<<endl;
+        }
+        else{
+            cout<<process[i]<<"\t   "<<"Not allocated"<< endl;
+        }
+    }
+}
+
+int main(){
+    int block[5] = {80, 300, 50, 160, 50};
+    int process[5] = {160, 80, 20, 80, 200};
+
+    int n = sizeof(block) / sizeof(block[0]);
+    int m = sizeof(process) / sizeof(process[0]);
+
+    bestfit(block, process, n, m);
+
+    return 0;
+}
