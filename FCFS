@@ -26,7 +26,7 @@ void findCompletionTime(int n, int ct[],int at[],int tat[]){
     }
 }
 
-void findavgTime(int n, int bt[], int at[]){
+void FCFS(int n, int bt[], int at[]){
 	int wt[n], tat[n], ct[n];
 
 	findWaitingTime(n, bt, wt, at);
@@ -51,7 +51,7 @@ int main(){
 	int burst_time[] = {5, 9, 6};
 	int arrival_time[] = {1,2,3};
 
-	findavgTime(3,burst_time,arrival_time);
+	FCFS(3,burst_time,arrival_time);
 
 	return 0;
 }
